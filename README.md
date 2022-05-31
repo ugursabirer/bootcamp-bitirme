@@ -1,0 +1,1 @@
+# Patika.dev & LC Waikiki .Net Bootcamp bitirme projesi.
