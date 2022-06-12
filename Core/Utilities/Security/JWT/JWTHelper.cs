@@ -17,19 +17,13 @@ namespace Core.Utilities.Security.JWT
     public class JWTHelper : ITokenHelper
     {
         public IConfiguration Configuration { get; }
-        private IOptions<TokenOptions> appSettings;
         private TokenOptions _tokenOptions;
         private DateTime _accessTokenExpiration;
 
-        public JWTHelper(IConfiguration configuration, IOptions<TokenOptions> app)
+        public JWTHelper(IConfiguration configuration, IOptions<TokenOptions> tokenOptions)
         {
             Configuration = configuration;
-            //_tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
-            appSettings = app;
-            _tokenOptions.Audience = appSettings.Value.Audience;
-            _tokenOptions.Issuer = appSettings.Value.Issuer;
-            _tokenOptions.AccessTokenExpiration = appSettings.Value.AccessTokenExpiration;
-            _tokenOptions.SecurityKey = appSettings.Value.SecurityKey;
+            _tokenOptions = tokenOptions.Value; 
         }
 
         public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
