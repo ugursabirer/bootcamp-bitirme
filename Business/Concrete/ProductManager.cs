@@ -71,6 +71,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max));
         }
 
+        [CacheAspect] //key value
         public IDataResult<List<ProductDetailDto>> GetProductDetails()
         {
             //maintenance time test
